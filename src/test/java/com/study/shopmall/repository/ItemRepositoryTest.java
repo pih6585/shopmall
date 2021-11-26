@@ -107,4 +107,17 @@ class ItemRepositoryTest {
 
 		assertThat(items.get(0).getItemName()).isEqualTo("테스트 상품2");
 	}
+
+	@Test
+	@DisplayName("QueryDsl를 이용한 상품을 조회한다.")
+	public void QueryDslTest() {
+		this.createItemList();
+		List<Item> items = itemRepository.searchItemSellStatusOrItemDetail();
+		for (Item item : items) {
+			System.out.println(item.toString());
+		}
+
+		assertThat(items.get(0).getItemName()).isEqualTo("테스트 상품2");
+	}
+
 }

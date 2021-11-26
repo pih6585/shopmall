@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 import com.study.shopmall.entity.Item;
 
-public interface ItemRepository extends JpaRepository<Item, Long> {
+public interface ItemRepository extends JpaRepository<Item, Long>, ItemRepositoryCustom {
 
 	List<Item> findByItemName(String itemName);
 
