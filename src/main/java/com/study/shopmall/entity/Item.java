@@ -12,11 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
 import com.study.shopmall.constant.ItemSellStatus;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -47,18 +45,18 @@ public class Item {
 	@Enumerated(EnumType.STRING)
 	private ItemSellStatus itemSellStatus;
 
-	@CreationTimestamp
 	private LocalDateTime createTime;
 
-	@UpdateTimestamp
 	private LocalDateTime updateTime;
 
 	protected Item() {
 
 	}
 
-	private Item(String itemName, int price, int stockNumber, String itemDetail,
+	@Builder
+	public Item(Long id, String itemName, int price, int stockNumber, String itemDetail,
 		ItemSellStatus itemSellStatus, LocalDateTime createTime, LocalDateTime updateTime) {
+		this.id = id;
 		this.itemName = itemName;
 		this.price = price;
 		this.stockNumber = stockNumber;
@@ -68,9 +66,4 @@ public class Item {
 		this.updateTime = updateTime;
 	}
 
-	public Item createItem(String itemName, int price, int stockNumber, String itemDetail,
-		ItemSellStatus itemSellStatus, LocalDateTime createTime, LocalDateTime updateTime) {
-		return new Item(itemName, price, stockNumber, itemDetail,
-			itemSellStatus, createTime, updateTime);
-	}
 }
