@@ -1,6 +1,5 @@
 package com.study.shopmall.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -18,8 +17,11 @@ import com.study.shopmall.service.MemberService;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-	@Autowired
-	MemberService memberService;
+	private final MemberService memberService;
+
+	public SecurityConfig(MemberService memberService) {
+		this.memberService = memberService;
+	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -54,6 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.passwordEncoder(passwordEncoder());
 	}
 
+	@SuppressWarnings("RedundantThrows")
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		web.ignoring().antMatchers("/css/**", "/js/**", "/img/**");
