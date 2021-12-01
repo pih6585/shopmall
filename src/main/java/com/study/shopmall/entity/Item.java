@@ -1,6 +1,7 @@
 package com.study.shopmall.entity;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +10,10 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import com.study.shopmall.constant.ItemSellStatus;
@@ -44,6 +48,14 @@ public class Item {
 
 	@Enumerated(EnumType.STRING)
 	private ItemSellStatus itemSellStatus;
+
+	@ManyToMany
+	@JoinTable(
+		name = "member_item",
+		joinColumns = @JoinColumn(name = "member_id"),
+		inverseJoinColumns = @JoinColumn(name = "item_id")
+	)
+	private List<Member> members;
 
 	private LocalDateTime createTime;
 
