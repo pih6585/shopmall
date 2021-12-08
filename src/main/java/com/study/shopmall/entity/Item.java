@@ -20,11 +20,12 @@ import com.study.shopmall.constant.ItemSellStatus;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 @Entity
 @Table(name = "item")
-@Getter
+@Getter @Setter
 @ToString
 public class Item {
 
