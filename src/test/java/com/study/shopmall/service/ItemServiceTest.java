@@ -38,7 +38,7 @@ class ItemServiceTest {
 	@Autowired
 	ItemImgRepository itemImgRepository;
 
-	List<MultipartFile> createMultipartFiles() throws Exception {
+	List<MultipartFile> createMultipartFiles() {
 		List<MultipartFile> multipartFileList = new ArrayList<>();
 		for (int i = 0; i < 5; i++) {
 			String path = "C:/study/shopmall/shop/item/";
@@ -74,7 +74,7 @@ class ItemServiceTest {
 		assertEquals(itemFormDto.getItemDetail(), item.getItemDetail());
 		assertEquals(itemFormDto.getPrice(), item.getPrice());
 		assertEquals(itemFormDto.getStockNumber(), item.getStockNumber());
-		assertEquals(multipartFileList.get(1).getOriginalFilename(), itemImgList.get(0).getOriImgName());
+		assertEquals(multipartFileList.get(0).getOriginalFilename(), itemImgList.get(0).getOriImgName());
 	}
 
 }
